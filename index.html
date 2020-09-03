@@ -1,0 +1,46 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<link rel="stylesheet" href="styles.css">
+<div id="app">
+  <h2>Vue ToDo List</h2>
+  <div id="filterCheck">
+    <input type="checkbox" id="filter">
+  <label for="filter">Filter completed todos</label>
+  </div>
+  <div id="list"  v-for="todo of todos">
+    <input type="checkbox" @click="toggleCheckbox($event, todo.checked)">
+    <label>{{todo.name}}</label>
+  </div>
+  <div id="userInput">
+    <input type="text" placeholder="New todo" id="newTodo">
+    <button @click="addTodo">Create</button>
+    <button @click="deleteItem">Delete</button>
+  </div>
+</div>
+
+/*This is the code for the vue component*/
+<script>
+    new Vue({
+	el: '#app',
+  data: {
+  	todos: [
+    { name: "Eat dinner", checked: false},
+    ],
+  },
+  methods:{
+  	sayHello: function(){
+    	alert('hello')
+    },
+    addTodo: function(){
+    let todo = document.getElementById("newTodo").value;
+    	this.todos.push({name: todo, checked: false})
+     document.getElementById("newTodo").value = "";
+    },
+    toggleCheckbox: function(event, checkedBool){
+    	checkedBool = !checkedBool
+    },
+    deleteItem: function(){
+        alert('This is still a work in progress')
+    }
+  }
+})
+</script>
